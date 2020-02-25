@@ -10,7 +10,7 @@ pipeline {
         stage('Dynamic Code Analyzer'){
                 
                 steps {
-                        error("Many security vulnerabilities identified")
+                        echo 'Run Veracode'
                 }
         }
         stage('Deploy TEST') {
@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy PROD'){
 
                 steps{
-                        echo 'Deploy package to PROD server'
+                        error("Many security vulnerabilities identified")
                 }
         }
     }

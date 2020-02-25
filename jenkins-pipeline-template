@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    stages {
+        stage('Static Code Analyzer') {
+                steps {
+                        echo 'Run SonarQube'
+			
+                }
+        }
+        stage('Dynamic Code Analyzer'){
+                
+                steps {
+                        echo 'Run Veracode'
+                }
+        }
+        stage('Deploy TEST') {
+                steps{
+                        echo 'Deploy the package to the server'
+                }
+        }
+        stage('Testing') {
+                parallel {
+                        stage('Unit Test') {
+                                steps{
+                                        echo "Running the unit test..."
+                                }
+                        }
+                        stage('Functional test') {
+                                
+                                steps{
+                                        echo "Run the functional test"
+                                }
+			}
+                        stage('Performance test') {
+                                
+                                steps{
+                                        echo "run the performance test"
+                                }
+			}
+                }
+        }
+        stage('Deploy PROD'){
+
+                steps{
+                        echo 'Deploy package to PROD server'
+                }
+        }
+    }
+}
